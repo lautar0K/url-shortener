@@ -8,10 +8,8 @@ const client = new Client({
 });
 client.connect();
 
-client.query("SELECT * FROM links", (err, res) => {
-  if(err) throw err;
-  for (let row of res.rows) {
-    console.log(JSON.stringify(row));
-  }
+client.query("SELECT * FROM links").then(result) {
+  console.log('${result.rows[0].name}');
+}
   client.end();
 })
