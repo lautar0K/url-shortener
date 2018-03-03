@@ -10,7 +10,10 @@ client.connect();
 
 app.get("/", function(req, res) {
   client.query("SELECT * FROM links").then((result) => {
-        res.end(`${result.rows[0].name}\n`);
-        client.end();
-      })
-})
+    res.end(`${result.rows[0].name}\n`);
+    client.end();
+  })
+});
+app.listen(process.env.PORT || 3000, function() {
+  console.log("Listening on port ", this.address().port, app.settings.env)
+});
