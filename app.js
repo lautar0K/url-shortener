@@ -8,9 +8,9 @@ const client = new Client({
 });
 client.connect();
 
-app.get("/", function(req, res) {
-  client.query("SELECT * FROM links").then((result) => {
-    res.end(`${result.rows[0].name}\n`);
+app.get("/:id", function(req, res) {
+  client.query("INSERT INTO links values(" + req.url + ")").then((result) => {
+    res.end(`${result.name}\n`);
     client.end();
   })
 });
