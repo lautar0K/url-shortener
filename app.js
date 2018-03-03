@@ -8,8 +8,7 @@ const client = new Client({
 });
 client.connect();
 
-client.query("SELECT * FROM links").then(result) {
-  console.log('${result.rows[0].name}');
-}
-  client.end();
-})
+client.query("SELECT * FROM links").then((result) => {
+      res.end(`${result.rows[0].name}\n`);
+      client.end();
+    })
