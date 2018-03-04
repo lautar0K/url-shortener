@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const pg = require("pg");
 const valid = require("valid-url");
-const crypto = require("crypto");
+const sh = require("shorthash");
 
 let json = new Object();
 
@@ -16,9 +16,7 @@ app.get("/:id", function(req, res, next) {
       if(err) {
         console.log("Error connecting.");
       }
-      let hash = crypto.createHash("sha1")
-                        .update(id)
-                        .digest("hex");
+      let hash = sh.unique(id);
 
       client.query("INSERT INTO links(name, short) VALUES($1, $2)",
       [id, hash], function(err, result) {
