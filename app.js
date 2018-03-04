@@ -1,21 +1,20 @@
 const express = require("express");
 const app = express();
-const { Client } = require("pg");
+const pg = require("pg");
 const valid = require("valid-url");
 
-const client = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: true,
-});
-client.connect();
-
-app.get("/:id", function(req, res) {
-  client.query("INSERT INTO links values(" + req.url + ")").then((result) => {
-    res.end(`${result.name}\n`).catch(function() {
-      console.log("Promise rejected");
-    })
-    client.end();
-  })
+app.get("/:id", function(req, res, next) {
+  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+    if(err) throw err;
+    client.query("INSERT INTO links(url, code) VALUES($1, $2) returning Id",
+    [req.url], Math.round(Math.random * 10000), function(err, result) {
+      done();
+      if(err) {
+        console.log("Error running query.");
+      }
+      res.send(result);
+    });
+  });
 });
 app.listen(process.env.PORT || 3000, function() {
   console.log("Listening on port ", this.address().port, app.settings.env)
