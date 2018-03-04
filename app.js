@@ -9,7 +9,7 @@ app.get("/:id", function(req, res, next) {
   let id = req.params.id;
   if(valid.isUri(id) == false) {
     json.short = "Invalid URL";
-  } else {
+  } else if (id != "favicon.ico") {
     pg.connect(process.env.DATABASE_URL, function(err, client, done) {
       if(err) {
         console.log("Error connecting.");
