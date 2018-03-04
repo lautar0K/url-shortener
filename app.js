@@ -19,7 +19,7 @@ app.get("/:id", function(req, res, next) {
       let hash = crypto.createHash("sha1");
 
       client.query("INSERT INTO links(name, short) VALUES($1, $2)",
-      [id, random], function(err, result) {
+      [id, hash], function(err, result) {
         done();
         if(err) {
           console.log("Error running query.", err);
