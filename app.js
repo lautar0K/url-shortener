@@ -12,7 +12,7 @@ app.get("/:id", function(req, res, next) {
     [req.url, Math.round(Math.random * 10000)], function(err, result) {
       done();
       if(err) {
-        console.log("Error running query.");
+        console.log("Error running query.", err);
       }
       res.send(result);
     })
