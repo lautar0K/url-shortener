@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const pg = require("pg");
-let pool = new pg.Pool(process.env.DATABASE_URL);
+let pool = new pg.Pool("postgres://yzlurtetpcmmtd:8d5734a5ac55fe3950ae4466a6b6c19a69ea51da87d26020def7551e6af2f692@ec2-174-129-26-203.compute-1.amazonaws.com:5432/dc82nloal602j1");
 const valid = require("valid-url");
 
 app.get("/:id", function(req, res, next) {
