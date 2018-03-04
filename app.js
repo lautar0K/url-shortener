@@ -16,7 +16,9 @@ app.get("/:id", function(req, res, next) {
       if(err) {
         console.log("Error connecting.");
       }
-      let hash = crypto.createHash("sha1");
+      let hash = crypto.createHash("sha1")
+                        .update(id)
+                        .digest("hex"));
 
       client.query("INSERT INTO links(name, short) VALUES($1, $2)",
       [id, hash], function(err, result) {
