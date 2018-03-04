@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const pg = require("pg");
 const valid = require("valid-url");
+const crypto = require("crypto");
 
 let json = new Object();
 
@@ -15,7 +16,7 @@ app.get("/:id", function(req, res, next) {
       if(err) {
         console.log("Error connecting.");
       }
-      let random = Math.round(Math.random() * 10000);
+      let hash = crypto.createHash("sha1");
 
       client.query("INSERT INTO links(name, short) VALUES($1, $2)",
       [id, random], function(err, result) {
@@ -24,7 +25,7 @@ app.get("/:id", function(req, res, next) {
           console.log("Error running query.", err);
         }
         json.original = id;
-        json.short = random;
+        json.short = hash;
         res.json(json);
       })
     })

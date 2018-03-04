@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "crypto": "^1.0.1",
     "express": "^4.16.2",
     "knex": "^0.14.4",
     "pg": "^5.2.1",
