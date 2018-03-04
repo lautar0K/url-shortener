@@ -1,12 +1,13 @@
 const express = require("express");
 const app = express();
 const pg = require("pg");
+let pool = new pg.Pool()
 const valid = require("valid-url");
 
 app.get("/:id", function(req, res, next) {
-  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+  pool.connect(function(err, client, done) {
     if(err) throw err;
-    client.query("INSERT INTO links(url, code) VALUES($1, $2) returning Id",
+    client.query("INSERT INTO links(url, code) VALUES($1, $2) returning id",
     [req.url], Math.round(Math.random * 10000), function(err, result) {
       done();
       if(err) {
