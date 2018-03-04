@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const pg = require("pg");
-let pool = new pg.Pool()
+let pool = new pg.Pool(process.env.DATABASE_URL);
 const valid = require("valid-url");
 
 app.get("/:id", function(req, res, next) {
@@ -15,7 +15,7 @@ app.get("/:id", function(req, res, next) {
       if(err) {
         console.log("Error running query.");
       }
-      res.send(result);
+      console.log("Done.");
     });
   });
 });
