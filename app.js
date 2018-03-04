@@ -9,6 +9,7 @@ let json = new Object();
 app.get("/:id", function(req, res, next) {
   let id = req.params.id;
   console.log(valid.isUri(id));
+
   if(valid.isUri(id) == false) {
     json.short = "Invalid URL";
   } else if (id != "favicon.ico") {
