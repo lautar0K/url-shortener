@@ -9,7 +9,7 @@ app.get("/:id", function(req, res, next) {
       console.log("Error connecting.");
     }
     client.query("INSERT INTO links(name, short) VALUES($1, $2) returning Id",
-    req.url, Math.round(Math.random * 10000), function(err, result) {
+    [req.url, Math.round(Math.random * 10000)], function(err, result) {
       done();
       if(err) {
         console.log("Error running query.");
