@@ -6,7 +6,9 @@ const valid = require("valid-url");
 
 app.get("/:id", function(req, res, next) {
   pool.connect(function(err, client, done) {
-    if(err) throw err;
+    if(err) {
+      console.log("Error connecting.");
+    }
     client.query("INSERT INTO links(url, code) VALUES($1, $2) returning id",
     [req.url], Math.round(Math.random * 10000), function(err, result) {
       done();
