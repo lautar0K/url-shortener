@@ -8,7 +8,7 @@ app.get("/:id", function(req, res, next) {
     if(err) {
       console.log("Error connecting.");
     }
-    client.query("INSERT INTO links(name, short) VALUES($1, $2) returning Id",
+    client.query("INSERT INTO links(name, short) VALUES($1, $2) returning name",
     [req.url, Math.round(Math.random * 10000)], function(err, result) {
       done();
       if(err) {
