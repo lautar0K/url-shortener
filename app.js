@@ -18,7 +18,7 @@ app.get("/:id", function(req, res, next) {
       }
       let hash = crypto.createHash("sha1")
                         .update(id)
-                        .digest("hex"));
+                        .digest("hex");
 
       client.query("INSERT INTO links(name, short) VALUES($1, $2)",
       [id, hash], function(err, result) {
