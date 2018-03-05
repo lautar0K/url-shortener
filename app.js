@@ -13,7 +13,7 @@ app.get("/:id", function(req, res, next) {
   if(validUrl.isUri(id)) {
       console.log('Valid URL');
 
-    if (id != "favicon.ico") {
+    /*if (id != "favicon.ico") {
       pg.connect(process.env.DATABASE_URL, function(err, client, done) {
         if(err) {
           console.log("Error connecting.");
@@ -43,6 +43,7 @@ app.get("/:id", function(req, res, next) {
         })
       })
     }
+    */
   } else {
     console.log("Invalid URL.")
   }
