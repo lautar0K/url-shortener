@@ -19,7 +19,7 @@ app.get("/:id", function(req, res, next) {
       }
       let hash = sh.unique(id);
 
-      client.query("INSERT INTO links(name, short) VALUES($1, $2)",
+      /* client.query("INSERT INTO links(name, short) VALUES($1, $2)",
       [id, hash], function(err, result) {
         done();
         if(err) {
@@ -28,6 +28,14 @@ app.get("/:id", function(req, res, next) {
         json.original = id;
         json.short = hash;
         res.json(json);
+      })
+      */
+      client.query("SELECT FROM links WHERE name = '" + id + "'", function(err, result) {
+        done();
+        if(err) {
+          console.log("Error in query.", err);
+        }
+        console.log(result);
       })
     })
   }
