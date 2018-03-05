@@ -8,7 +8,6 @@ let json = new Object();
 
 app.get("/:id", function(req, res, next) {
   let id = req.params.id;
-  console.log(valid.isUri(id));
 
   if(valid.isUri(id) == false) {
     json.short = "Invalid URL";
@@ -19,23 +18,23 @@ app.get("/:id", function(req, res, next) {
       }
       let hash = sh.unique(id);
 
-      /* client.query("INSERT INTO links(name, short) VALUES($1, $2)",
-      [id, hash], function(err, result) {
-        done();
-        if(err) {
-          console.log("Error running query.", err);
-        }
-        json.original = id;
-        json.short = hash;
-        res.json(json);
-      })
-      */
       client.query("SELECT FROM links WHERE name = '" + id + "'", function(err, result) {
         done();
         if(err) {
           console.log("Error in query.", err);
         }
-        console.log(result.rowCount);
+        if(result.rowCount == 0) {
+          client.query("INSERT INTO links(name, short) VALUES($1, $2)",
+          [id, hash], function(err, result) {
+            done();
+            if(err) {
+              console.log("Error running query.", err);
+            }
+            json.original = id;
+            json.short = hash;
+            res.json(json);
+          })
+        }
       })
     })
   }
