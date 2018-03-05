@@ -35,7 +35,7 @@ app.get("/:id", function(req, res, next) {
         if(err) {
           console.log("Error in query.", err);
         }
-        console.log(result);
+        console.log(result.rowCount);
       })
     })
   }
