@@ -10,9 +10,7 @@ app.get("/:id", function(req, res, next) {
   let id = req.params.id;
 
   //Checks of the request is a valid URL
-  if(valid.isUri(id) == false) {
-    json.short = "Invalid URL";
-  } else if (id != "favicon.ico") {
+  if (id != "favicon.ico") {
     pg.connect(process.env.DATABASE_URL, function(err, client, done) {
       if(err) {
         console.log("Error connecting.");
@@ -25,7 +23,7 @@ app.get("/:id", function(req, res, next) {
         if(err) {
           console.log("Error in query.", err);
         }
-
+        //If it's not in DB it's added
         if(result.rowCount == 0) {
           console.log("Added.")
           client.query("INSERT INTO links(name, short) VALUES($1, $2)",
@@ -41,6 +39,12 @@ app.get("/:id", function(req, res, next) {
         }
         else {
           console.log("Already in DB.")
+          client.query("SELECT name FROM links WHERE short = '" + id + "'", function(err, result) {
+            done();
+            if(err) {
+              console.log("Error in query.", err);
+            }
+            res.end(id);            
         }
       })
     })
