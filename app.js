@@ -12,7 +12,7 @@ app.get("/:id", function(req, res, next) {
 
   console.log(valid.isUri(id));
   //Checks of the request is a valid URL
-  if (urlRegex.test(id) && id != "favicon.ico") {
+  if (id != "favicon.ico") {
     console.log("Valid URL");
 
     pg.connect(process.env.DATABASE_URL, function(err, client, done) {
