@@ -36,6 +36,7 @@ app.get("/:id", function(req, res, next) {
             json.short = hash;
             res.json(json);
           })
+       //Handles short URL request and redirections to original URL
         } else {
           console.log("Already in DB.")
           client.query("SELECT name FROM links WHERE short = '" + id + "'", function(err, result) {
@@ -43,6 +44,7 @@ app.get("/:id", function(req, res, next) {
             if(err) {
               console.log("Error in query.", err);
             }
+            res.end(id);
           })
         }
       })
