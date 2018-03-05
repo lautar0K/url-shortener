@@ -44,8 +44,7 @@ app.get("/:id", function(req, res, next) {
             if(err) {
               console.log("Error in query.", err);
             }
-            res.redirect(id);
-            res.end();
+            res.status(301).redirect(id);
           })
         }
       })
