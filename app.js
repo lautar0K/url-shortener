@@ -9,46 +9,41 @@ let json = new Object();
 
 app.get("/:id", function(req, res, next) {
   let id = req.params.id;
-
-  if (validUrl.isUri(id)){
-      console.log('Looks like an URI');
-  } else {
-      console.log('Not a URI');
-  }
   //Checks of the request is a valid URL
-  if (id != "favicon.ico") {
-    console.log("Valid URL");
+  if(validUrl.isUri(id)) {
+      console.log('Looks like an URI');
+    if (id != "favicon.ico") {
+      console.log("Valid URL");
 
-    pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-      if(err) {
-        console.log("Error connecting.");
-      }
-      let hash = sh.unique(id);
-
-      //Checks if the request is already in DB
-      client.query("SELECT FROM links WHERE name = '" + id + "'", function(err, result) {
-        done();
+      pg.connect(process.env.DATABASE_URL, function(err, client, done) {
         if(err) {
-          console.log("Error in query.", err);
+          console.log("Error connecting.");
         }
-        //If it's not in DB it's added
-        if(result.rowCount == 0) {
-          console.log("Added.")
-          client.query("INSERT INTO links(name, short) VALUES($1, $2)",
-          [id, hash], function(err, result) {
-            done();
-            if(err) {
-              console.log("Error running query.", err);
-            }
-            json.original = id;
-            json.short = hash;
-            res.json(json);
-          })
-        }
+        let hash = sh.unique(id);
+
+        //Checks if the request is already in DB
+        client.query("SELECT FROM links WHERE name = '" + id + "'", function(err, result) {
+          done();
+          if(err) {
+            console.log("Error in query.", err);
+          }
+          //If it's not in DB it's added
+          if(result.rowCount == 0) {
+            console.log("Added.")
+            client.query("INSERT INTO links(name, short) VALUES($1, $2)",
+            [id, hash], function(err, result) {
+              done();
+              if(err) {
+                console.log("Error running query.", err);
+              }
+              json.original = id;
+              json.short = hash;
+              res.json(json);
+            })
+          }
+        })
       })
-    })
-  } else {
-    console.log("Invalid URL.");
+    }
   }
 });
 app.listen(process.env.PORT || 3000, function() {
