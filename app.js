@@ -9,7 +9,7 @@ let json = new Object();
 
 app.get("/:id", function(req, res) {
   var url = req.rawHeaders[req.rawHeaders.indexOf("Referer") + 1];
-    if (url != 'favicon.ico') {
+    if (url != 'favicon.ico' || "Host") {
       console.log(url);
    }
   //Checks of the request is a valid URL
