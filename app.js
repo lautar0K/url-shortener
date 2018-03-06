@@ -11,8 +11,11 @@ app.get("/:id", function(req, res, next) {
   let id = req.params.id;
   console.log(id);
   //Checks of the request is a valid URL
-  if(validUrl.isUri(id)) {
-      console.log('Valid URL');
+  if(validUrl.isUri(id) && id != "favicon.ico") {
+    console.log('Valid URL.');
+  } else {
+    console.log("Invalid URL.")
+  }
 
     /*if (id != "favicon.ico") {
       pg.connect(process.env.DATABASE_URL, function(err, client, done) {
@@ -45,9 +48,6 @@ app.get("/:id", function(req, res, next) {
       })
     }
     */
-  } else {
-    console.log("Invalid URL.")
-  }
 });
 app.listen(process.env.PORT || 3000, function() {
   console.log("Listening on port ", this.address().port, app.settings.env)
