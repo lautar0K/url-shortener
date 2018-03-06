@@ -9,13 +9,14 @@ let json = new Object();
 
 app.get("/:id", function(req, res, next) {
   let id = req.params.id;
-  console.log(id);
   //Checks of the request is a valid URL
   if(id != "favicon.ico") {
     if(validUrl.isUri(id)) {
+      console.log(id);
       console.log('Valid URL.');
     } else {
-    console.log("Invalid URL.")
+      console.log(id);
+      console.log("Invalid URL.")
     }
   }
 
