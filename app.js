@@ -9,9 +9,9 @@ let json = new Object();
 
 app.get("/:id", function(req, res, next) {
   let id = req.params.id;
-  console.log(id);
   //Checks of the request is a valid URL
   if(id != "favicon.ico") {
+    console.log(id);
     if(validUrl.isUri(id) || validUrl.isUri("https://" + id)) {
       console.log(id);
       console.log('Valid URL.');
