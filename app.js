@@ -7,7 +7,7 @@ const sh = require("shorthash");
 
 let json = new Object();
 
-app.get("/:id", function(req, res, next) {
+app.get("/:id", function(req, res) {
   let id = req.protocol + '://' + req.get('host') + req.originalUrl;
   console.log(id);
   //Checks of the request is a valid URL
