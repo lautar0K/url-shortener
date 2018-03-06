@@ -8,8 +8,8 @@ const sh = require("shorthash");
 let json = new Object();
 
 app.get("/:id", function(req, res, next) {
-  let id1 = process.env.APP_URL;
-  let id2 = req.params.url;
+  let id1 = process.env;
+  let id2 = req.params;
   console.log(id1);
   console.log(id2);
   //Checks of the request is a valid URL
