@@ -10,7 +10,7 @@ let json = new Object();
 app.get("/:id", function(req, res) {
   var url = process.env.APP_URL + req.params.url;
     if (url != process.env.APP_URL + 'favicon.ico') {
-      console.log(id1, id2);
+      console.log(url);
    }
   //Checks of the request is a valid URL
   /*if(id != "favicon.ico") {
