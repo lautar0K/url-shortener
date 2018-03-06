@@ -9,6 +9,7 @@ let json = new Object();
 
 app.get("/:id", function(req, res, next) {
   let id = req.params.id;
+  console.log(id);
   //Checks of the request is a valid URL
   if(validUrl.isUri(id)) {
       console.log('Valid URL');
