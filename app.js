@@ -8,10 +8,13 @@ const sh = require("shorthash");
 let json = new Object();
 
 app.get("/:id", function(req, res, next) {
-  let id = "" + req.params.id + "";
+  let id1 = process.env.APP_URL;
+  let id2 = req.params.url;
+  console.log(id1);
+  console.log(id2);
   //Checks of the request is a valid URL
-  if(id != "favicon.ico") {
-    console.log(id);
+  /*if(id != "favicon.ico") {
+    console.log(id1);
     if(validUrl.isUri(id) || validUrl.isUri("https://" + id)) {
       console.log(id);
       console.log('Valid URL.');
@@ -20,7 +23,7 @@ app.get("/:id", function(req, res, next) {
       console.log("Invalid URL.")
     }
   }
-
+ */
     /*if (id != "favicon.ico") {
       pg.connect(process.env.DATABASE_URL, function(err, client, done) {
         if(err) {
