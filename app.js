@@ -8,7 +8,7 @@ const sh = require("shorthash");
 let json = new Object();
 
 app.get("/:id", function(req, res) {
-  var url = req.rawHeaders["Referer" + 1];
+  var url = req.rawHeaders[req.rawHeaders.indexOf("Referer") + 1];
     if (url != 'favicon.ico') {
       console.log(url);
    }
