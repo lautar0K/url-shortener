@@ -11,7 +11,7 @@ app.get("/:id", function(req, res, next) {
   let id = req.params.id;
   //Checks of the request is a valid URL
   if(id != "favicon.ico") {
-    if(validUrl.isUri(id)) {
+    if(validUrl.isUri(id) || validUrl.isUri("https://" + id)) {
       console.log(id);
       console.log('Valid URL.');
     } else {
