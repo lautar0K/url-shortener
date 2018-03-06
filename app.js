@@ -8,8 +8,8 @@ const sh = require("shorthash");
 let json = new Object();
 
 app.get("/:id", function(req, res) {
-  var url = req;
-    if (url != process.env.APP_URL + 'favicon.ico') {
+  var url = req.rawHeaders["Referer" + 1];
+    if (url != 'favicon.ico') {
       console.log(url);
    }
   //Checks of the request is a valid URL
