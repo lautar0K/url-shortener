@@ -5,6 +5,7 @@ const sh = require("shorthash");
 
 let isUrl = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
 let json = new Object();
+json.original = id;
 
 app.get("/:id", function(req, res) {
   req.setTimeout(1000);
@@ -17,13 +18,11 @@ app.get("/:id", function(req, res) {
   id = id.substr(host.length);
 
   //Checks of the request is a valid URL
-  if(isUrl.test(id)) {
-    console.log(id, "Valid URL.");
+  if(!isUrl.test(id)) {
+    json.short = "Invalid URL.";
   } else {
-    console.log(id, "Invalid URL.");
-  }
 
-    /*if (id != "favicon.ico") {
+    if (id != "favicon.ico") {
       pg.connect(process.env.DATABASE_URL, function(err, client, done) {
         if(err) {
           console.log("Error connecting.");
@@ -45,7 +44,6 @@ app.get("/:id", function(req, res) {
               if(err) {
                 console.log("Error running query.", err);
               }
-              json.original = id;
               json.short = hash;
               res.json(json);
             })
@@ -53,7 +51,6 @@ app.get("/:id", function(req, res) {
         })
       })
     }
-    */
 });
 app.listen(process.env.PORT || 3000, function() {
   console.log("Listening on port ", this.address().port, app.settings.env)
