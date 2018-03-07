@@ -16,20 +16,14 @@ app.get("/:id", function(req, res) {
   //Gets path
   let host = "https://fcc-url-shortnr.herokuapp.com/";
   id = id.substr(host.length);
-  console.log(id);
 
   //Checks of the request is a valid URL
-  /*if(id != "favicon.ico") {
-    console.log(id1);
-    if(validUrl.isUri(id) || validUrl.isUri("https://" + id)) {
-      console.log(id);
-      console.log('Valid URL.');
-    } else {
-      console.log(id);
-      console.log("Invalid URL.")
-    }
+  if(validUrl.isUri(id) || validUrl.isUri("https://" + id)) {
+      console.log(id, "Valid URL.");
+  } else {
+      console.log(id, "Invalid URL.");
   }
- */
+
     /*if (id != "favicon.ico") {
       pg.connect(process.env.DATABASE_URL, function(err, client, done) {
         if(err) {
