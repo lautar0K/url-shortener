@@ -14,7 +14,7 @@ app.get("/:id", function(req, res) {
     if(id != "Host") {
       if(id != "favicon.ico") {
         url = id;
-        res.end(url);
+        res.end("<html><body>" + url + "</body></html>");
       }
    }
 
