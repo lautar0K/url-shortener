@@ -9,6 +9,9 @@ let json = new Object();
 
 app.get("/:id", function(req, res) {
   id = req.url;
+  if(id == null) {
+    req.rawHeaders[req.rawHeaders.indexOf("Referer") + 1];
+  }
   if(id != "/favicon.ico") {
     console.log(id);
   }
