@@ -8,7 +8,6 @@ const sh = require("shorthash");
 let json = new Object();
 
 app.get("/:id", function(req, res) {
-  req.setTimeout(2000);
   id = req.rawHeaders[req.rawHeaders.indexOf("Referer") + 1];
   if(id.length <= 0) {
     id = req.params.id;
