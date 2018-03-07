@@ -10,7 +10,7 @@ let json = new Object();
 app.get("/:id", function(req, res) {
   let id = req.rawHeaders[req.rawHeaders.indexOf("Referer") + 1];
   let url;
-    if (id != 'favicon.ico' || "Host") {
+    if (id != 'favicon.ico' && id != "Host") {
       url = id;
       console.log(url);
    }
