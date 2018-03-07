@@ -1,10 +1,9 @@
 const express = require("express");
 const app = express();
 const pg = require("pg");
-const validUrl = require("valid-url");
 const sh = require("shorthash");
 
-
+let isUrl = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
 let json = new Object();
 
 app.get("/:id", function(req, res) {
@@ -18,17 +17,10 @@ app.get("/:id", function(req, res) {
   id = id.substr(host.length);
 
   //Checks of the request is a valid URL
-  let valid;
-
-  if(validUrl.isUri(id)) {
+  if(isUrl.test(id)) {
     console.log(id, "Valid URL.");
-    valid = true;
-  } else if(validUrl.isUri("https://" + id)) {
-    console.log("https://" + id, "Valid URL.");
-    valid = true;
   } else {
     console.log(id, "Invalid URL.");
-    valid = false;
   }
 
     /*if (id != "favicon.ico") {
