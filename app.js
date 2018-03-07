@@ -18,7 +18,7 @@ app.get("/:id", function(req, res) {
   id = id.substr(host.length);
 
   //Checks of the request is a valid URL
-  if(validUrl.isUri(id) || validUrl.isUri("https://" + id)) {
+  if(validUrl.isUri(id)) {
       console.log(id, "Valid URL.");
   } else {
       console.log(id, "Invalid URL.");
