@@ -16,6 +16,8 @@ app.get("/:id", function(req, res) {
   if(id != "/favicon.ico" && id != "Host") {
     console.log(id, id.length);
   }
+  let host = "https://fcc-url-shortnr.herokuapp.com/";
+  id = id.substr(id.indexOf(host));
 
   //Checks of the request is a valid URL
   /*if(id != "favicon.ico") {
