@@ -9,9 +9,9 @@ let json = new Object();
 
 app.get("/:id", function(req, res) {
   req.setTimeout(2000);
-  id = req.url;
+  id = req.rawHeaders[req.rawHeaders.indexOf("Referer") + 1];
   if(id.length <= 0) {
-    id = req.rawHeaders[req.rawHeaders.indexOf("Referer") + 1];
+    id = req.params.id;
   }
   if(id != "/favicon.ico") {
     console.log(id);
