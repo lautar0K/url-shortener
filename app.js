@@ -8,7 +8,7 @@ const sh = require("shorthash");
 let json = new Object();
 
 app.get("/:id", function(req, res) {
-  id = req.path;
+  id = req.url;
   if(id != "/favicon.ico") {
     console.log(id);
   }
