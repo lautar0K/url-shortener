@@ -16,6 +16,7 @@ app.get("/:id", function(req, res) {
   if(id != "/favicon.ico") {
     console.log(id);
   }
+  console.log(id.length);
 
   //Checks of the request is a valid URL
   /*if(id != "favicon.ico") {
