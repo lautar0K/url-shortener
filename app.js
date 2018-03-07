@@ -11,6 +11,7 @@ app.get("/:id", function(req, res) {
   id = req.url;
   if(id.length <= 0) {
     id = req.rawHeaders[req.rawHeaders.indexOf("Referer") + 1];
+  }
   if(id != "/favicon.ico") {
     console.log(id);
   }
