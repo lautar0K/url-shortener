@@ -11,9 +11,11 @@ app.get("/:id", function(req, res) {
   let id = req.rawHeaders[req.rawHeaders.indexOf("Referer") + 1];
   let url;
     if(id != "Host") {
-      if(id != "favicon.ico") {
+      if(id != "favicon.ico" && id != null) {
         url = id;
         console.log(url);
+      } else {
+        url = req.params.id;
       }
    }
 
