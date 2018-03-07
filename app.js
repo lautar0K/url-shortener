@@ -8,7 +8,7 @@ const sh = require("shorthash");
 let json = new Object();
 
 app.get("/:id", function(req, res) {
-  req.setTimeout(5);
+  req.setTimeout(1000);
   let id = req.rawHeaders[req.rawHeaders.indexOf("Referer") + 1];
   let url;
     if(id != "Host") {
