@@ -12,8 +12,9 @@ app.get("/:id", function(req, res) {
   let url;
     if (id != 'favicon.ico' || "Host") {
       url = id;
+      console.log(url);
    }
-   
+
   //Checks of the request is a valid URL
   /*if(id != "favicon.ico") {
     console.log(id1);
