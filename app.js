@@ -9,7 +9,7 @@ let json = new Object();
 
 app.get("/:id", function(req, res) {
   id = req.url;
-  if(id == null) {
+  if(id == undefined) {
     req.rawHeaders[req.rawHeaders.indexOf("Referer") + 1];
   }
   if(id != "/favicon.ico") {
