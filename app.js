@@ -20,7 +20,7 @@ app.get("/:id", function(req, res) {
   console.log(id);
 
   //Checks of the request is a valid URL
-  if(id > 0) {
+  if(id.length > 0) {
     if(!isUrl.test(id)) {
       console.log(id + " Invalid.");
 
