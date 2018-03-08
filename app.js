@@ -36,9 +36,7 @@ app.get("/:id", function(req, res) {
           if(err) {
             console.log("Error in query.", err);
           }
-          res.redirect(result.rows[0]["name"]);
-          res.end();
-
+          res.status(301).redirect(result.rows[0]["name"]);
         })
       });
 
