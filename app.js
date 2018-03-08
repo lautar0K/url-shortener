@@ -20,7 +20,9 @@ app.get("/:id", function(req, res) {
 
   //Checks of the request is a valid URL
   if(id.length > 0) {
+    console.log(id);
     if(!isUrl.test(id)) {
+      console.log(id);
       if(id != "favicon.ico") {
         let redir;
 
@@ -38,6 +40,7 @@ app.get("/:id", function(req, res) {
               console.log("Error in query.", err);
             }
             redir = result.rows[0]["name"];
+            console.log(redir);
             client.end()
           })
           pg.end();
