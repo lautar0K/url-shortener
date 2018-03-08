@@ -17,7 +17,9 @@ app.get("/:id", function(req, res) {
   //Gets path
   let host = "https://fcc-url-shortnr.herokuapp.com/";
   id = id.substr(host.length);
-  console.log(id, isUrl.test(id));
+  if(id.length > 0){
+    console.log(id, isUrl.test(id));
+  }
 
 });
 app.listen(process.env.PORT || 3000, function() {
