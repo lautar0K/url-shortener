@@ -17,10 +17,11 @@ app.get("/:id", function(req, res) {
   //Gets path
   let host = "https://fcc-url-shortnr.herokuapp.com/";
   id = id.substr(host.length);
+  console.log(id);
 
   //Checks of the request is a valid URL
   if(isUrl.test(id) == false) {
-    console.log(id, "Invalid.");
+    console.log(id + " Invalid.");
 
     //Checks if the request is a short
     pg.connect(process.env.DATABASE_URL, function(err, client, done) {
