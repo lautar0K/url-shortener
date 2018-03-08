@@ -20,7 +20,7 @@ app.get("/:id", function(req, res) {
 
   //Checks of the request is a valid URL
   if(id.length > 0) {
-    if(!isUrl.test(id)) {
+    if(!isUrl.test(id) && id != "favicon.ico") {
       console.log(id + " Invalid.");
       let redir;
 
