@@ -22,7 +22,6 @@ app.get("/:id", function(req, res) {
   if(id.length > 0) {
     if(!isUrl.test(id)) {
       if(id != "favicon.ico") {
-        console.log(id + " Invalid.");
         let redir;
 
         //Checks if the request is a short
@@ -47,7 +46,7 @@ app.get("/:id", function(req, res) {
         res.status(302).redirect("https://" + redir);
       }
 
-    } else {
+    } /* else {
       if (id != "favicon.ico") {
         console.log(id + " Valid.");
         pg.connect(process.env.DATABASE_URL, function(err, client, done) {
@@ -78,7 +77,7 @@ app.get("/:id", function(req, res) {
          })
        })
      }
-   }
+   } */
  }
 });
 app.listen(process.env.PORT || 3000, function() {
