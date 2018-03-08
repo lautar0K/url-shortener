@@ -22,7 +22,24 @@ app.get("/:id", function(req, res) {
   //Checks of the request is a valid URL
   if(!isUrl.test(id)) {
     console.log("Invalid.");
-    json.short = "Invalid URL.";
+
+    //Checks if the request is a short
+    pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+      if(err) {
+        console.log("Error connecting.");
+      }
+      let hash = sh.unique(id);
+
+      //Checks if the requested short is in DB
+      client.query("SELECT name FROM links WHERE short = '" + id + "'", function(err, result) {
+        done();
+        if(err) {
+          console.log("Error in query.", err);
+        }
+        req.end(result);
+
+      }
+    }
 
   } else {
     if (id != "favicon.ico") {
