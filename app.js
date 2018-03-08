@@ -17,7 +17,6 @@ app.get("/:id", function(req, res) {
   //Gets path
   let host = "https://fcc-url-shortnr.herokuapp.com/";
   id = id.substr(host.length);
-  console.log(id);
 
   //Checks of the request is a valid URL
   if(id.length > 0) {
@@ -44,6 +43,7 @@ app.get("/:id", function(req, res) {
 
     } else {
       if (id != "favicon.ico") {
+        console.log(id + " Valid.");
         pg.connect(process.env.DATABASE_URL, function(err, client, done) {
           if(err) {
             console.log("Error connecting.");
