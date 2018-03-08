@@ -36,7 +36,7 @@ app.get("/:id", function(req, res) {
         if(err) {
           console.log("Error in query.", err);
         }
-        req.end(result);
+        res.end(result);
 
       })
     });
