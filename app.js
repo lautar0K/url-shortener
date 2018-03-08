@@ -19,8 +19,7 @@ app.get("/:id", function(req, res) {
   id = id.substr(host.length);
   console.log(id, isUrl.test(id));
 
-  //Checks of the request is a valid URL
-
+});
 app.listen(process.env.PORT || 3000, function() {
   console.log("Listening on port ", this.address().port, app.settings.env)
 });
