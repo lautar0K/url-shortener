@@ -21,7 +21,7 @@ app.get("/:id", function(req, res) {
 
   //Checks of the request is a valid URL
   if(isUrl.test(id) == false) {
-    console.log("Invalid.");
+    console.log(id, "Invalid.");
 
     //Checks if the request is a short
     pg.connect(process.env.DATABASE_URL, function(err, client, done) {
