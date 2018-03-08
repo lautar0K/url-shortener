@@ -5,7 +5,6 @@ const sh = require("shorthash");
 
 let isUrl = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
 let json = new Object();
-json.original = id;
 
 app.get("/:id", function(req, res) {
   req.setTimeout(1000);
@@ -14,6 +13,8 @@ app.get("/:id", function(req, res) {
   if(id.length <= 0) {
     id = req.params.id;
   }
+
+  json.original = id;
   //Gets path
   let host = "https://fcc-url-shortnr.herokuapp.com/";
   id = id.substr(host.length);
