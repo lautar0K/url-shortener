@@ -11,6 +11,6 @@
   "dependencies": {
     "express": "^4.16.2",
     "pg": "^5.2.1",
-    "shorthash": "0.0.2",
+    "shorthash": "0.0.2"
   }
 }
