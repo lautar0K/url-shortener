@@ -6,7 +6,7 @@ const sh = require("shorthash");
 let isUrl = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
 let json = new Object();
 
-app.get("/new/:id", function(req, res) {
+app.get("/url/:id", function(req, res) {
   id = req.rawHeaders[req.rawHeaders.indexOf("Referer") + 1];
 
   if(id.length <= 0) {
@@ -14,7 +14,7 @@ app.get("/new/:id", function(req, res) {
   }
 
   //Gets path
-  let host = "https://fcc-url-shortnr.herokuapp.com/";
+  let host = "https://fcc-url-shortnr.herokuapp.com/url/";
   id = id.substr(host.length);
 
   //Checks of the request is a valid URL
@@ -44,7 +44,7 @@ app.get("/new/:id", function(req, res) {
                   console.log("Error running query.", err);
                 }
               })
-            
+
            } else {
              console.log("Already in DB.");
           }
