@@ -16,12 +16,12 @@ app.get("/:id", function(req, res) {
 
   //Gets path
   let host = "https://fcc-url-shortnr.herokuapp.com/";
-  id = id.substr(host.length);
-  console.log(id);
+  cleanId = id.substr(host.length);
+  console.log(cleanId);
 
   //Checks of the request is a valid URL
-  if(isUrl.test(id) == false) {
-    console.log(id + " Invalid.");
+  if(isUrl.test(cleanId) == false) {
+    console.log(cleanId + " Invalid.");
 
     //Checks if the request is a short
     pg.connect(process.env.DATABASE_URL, function(err, client, done) {
@@ -31,7 +31,7 @@ app.get("/:id", function(req, res) {
       let hash = sh.unique(id);
 
       //Checks if the requested short is in DB
-      client.query("SELECT name FROM links WHERE short = '" + id + "'", function(err, result) {
+      client.query("SELECT name FROM links WHERE short = '" + cleanId + "'", function(err, result) {
         done();
         if(err) {
           console.log("Error in query.", err);
