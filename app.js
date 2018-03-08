@@ -6,8 +6,7 @@ const sh = require("shorthash");
 let isUrl = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
 let json = new Object();
 
-app.all("/:id", function(req, res) {
-  req.setTimeout(1000);
+app.get("/:id", function(req, res) {
   id = req.rawHeaders[req.rawHeaders.indexOf("Referer") + 1];
 
   if(id.length <= 0) {
