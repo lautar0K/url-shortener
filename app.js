@@ -22,6 +22,7 @@ app.get("/:id", function(req, res) {
   if(id.length > 0) {
     if(!isUrl.test(id)) {
       console.log(id + " Invalid.");
+      let redir;
 
       //Checks if the request is a short
       pg.connect(process.env.DATABASE_URL, function(err, client, done) {
@@ -36,10 +37,11 @@ app.get("/:id", function(req, res) {
           if(err) {
             console.log("Error in query.", err);
           }
-          let redir = result.rows[0]["name"];
-          console.log(redir);
-          res.redirect(redir);
+          redir = result.rows[0]["name"];
+          client.end()
         })
+        pg.end();
+        res.redirect(redir);
       });
 
     } else {
