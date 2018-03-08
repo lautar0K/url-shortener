@@ -10,6 +10,7 @@ json.original = id;
 app.get("/:id", function(req, res) {
   req.setTimeout(1000);
   id = req.rawHeaders[req.rawHeaders.indexOf("Referer") + 1];
+
   if(id.length <= 0) {
     id = req.params.id;
   }
@@ -19,9 +20,10 @@ app.get("/:id", function(req, res) {
 
   //Checks of the request is a valid URL
   if(!isUrl.test(id)) {
+    console.log("Invalid.");
     json.short = "Invalid URL.";
-  } else {
 
+  } else {
     if (id != "favicon.ico") {
       pg.connect(process.env.DATABASE_URL, function(err, client, done) {
         if(err) {
