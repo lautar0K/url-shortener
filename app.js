@@ -38,8 +38,8 @@ app.get("/:id", function(req, res) {
         }
         req.end(result);
 
-      }
-    }
+      })
+    });
 
   } else {
     if (id != "favicon.ico") {
