@@ -42,7 +42,7 @@ app.get("/:id", function(req, res) {
             client.end()
           })
           pg.end();
-          res.redirect(redir);
+          res.status(302).redirect("https://" + redir);
         });
       }
 
