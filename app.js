@@ -20,6 +20,7 @@ app.get("/url/:id", function(req, res) {
   //Checks of the request is a valid URL
   if(id.length > 0 && isUrl.test(id)) {
     if (id != "favicon.ico") {
+      console.log(id);
         pg.connect(process.env.DATABASE_URL, function(err, client, done) {
           if(err) {
             console.log("Error connecting.");
