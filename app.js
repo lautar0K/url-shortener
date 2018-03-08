@@ -36,8 +36,9 @@ app.get("/:id", function(req, res) {
           if(err) {
             console.log("Error in query.", err);
           }
-          console.log(result.rows[0]["name"]);
-          res.status(302).redirect("https://" + result.rows[0]["name"]);
+          let redir = result.rows[0]["name"];
+          console.log(redir);
+          res.redirect(redir);
         })
       });
 
