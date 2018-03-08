@@ -65,8 +65,8 @@ app.get("/:id", function(req, res) {
                 console.log("Error running query.", err);
               }
               json.short = hash;
-              res.json(json);
             })
+          res.json(json);
          }
        })
      })
