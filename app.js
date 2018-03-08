@@ -53,6 +53,7 @@ app.get("/:id", function(req, res) {
        })
      })
    }
+ }
 });
 app.listen(process.env.PORT || 3000, function() {
   console.log("Listening on port ", this.address().port, app.settings.env)
