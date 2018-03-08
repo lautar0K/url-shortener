@@ -20,7 +20,7 @@ app.get("/:id", function(req, res) {
   id = id.substr(host.length);
 
   //Checks of the request is a valid URL
-  if(!isUrl.test(id)) {
+  if(isUrl.test(id) == false) {
     console.log("Invalid.");
 
     //Checks if the request is a short
