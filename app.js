@@ -20,29 +20,31 @@ app.get("/:id", function(req, res) {
 
   //Checks of the request is a valid URL
   if(id.length > 0) {
-    if(!isUrl.test(id) && id != "favicon.ico") {
-      console.log(id + " Invalid.");
-      let redir;
+    if(!isUrl.test(id)) {
+      if(id != "favicon.ico") {
+        console.log(id + " Invalid.");
+        let redir;
 
-      //Checks if the request is a short
-      pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-        if(err) {
-          console.log("Error connecting.");
-        }
-        let hash = sh.unique(id);
-
-        //Checks if the requested short is in DB
-        client.query("SELECT name FROM links WHERE short = '" + id + "'", function(err, result) {
-          done();
+        //Checks if the request is a short
+        pg.connect(process.env.DATABASE_URL, function(err, client, done) {
           if(err) {
-            console.log("Error in query.", err);
+            console.log("Error connecting.");
           }
-          redir = result.rows[0]["name"];
-          client.end()
-        })
-        pg.end();
-        res.redirect(redir);
-      });
+          let hash = sh.unique(id);
+
+          //Checks if the requested short is in DB
+          client.query("SELECT name FROM links WHERE short = '" + id + "'", function(err, result) {
+            done();
+            if(err) {
+              console.log("Error in query.", err);
+            }
+            redir = result.rows[0]["name"];
+            client.end()
+          })
+          pg.end();
+          res.redirect(redir);
+        });
+      }
 
     } else {
       if (id != "favicon.ico") {
