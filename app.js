@@ -10,7 +10,7 @@ app.get("/url/:id", function(req, res) {
   id = req.params;
   //Gets path
   let host = "https://fcc-url-shortnr.herokuapp.com/url/";
-  id = id.substr(host.length);
+  
   console.log(id);
   //Checks of the request is a valid URL
   if(id.length > 0 && isUrl.test(id)) {
