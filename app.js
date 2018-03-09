@@ -7,13 +7,7 @@ let isUrl = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\
 let json = new Object();
 
 app.get("/url/:id", function(req, res) {
-  id = req.rawHeaders[req.rawHeaders.indexOf("Referer") + 1];
-  console.log(req.rawHeaders);
-
-  if(id.length <= 0) {
-    id = req.params.id;
-  }
-  console.log(id);
+  id = req.params;
   //Gets path
   let host = "https://fcc-url-shortnr.herokuapp.com/url/";
   id = id.substr(host.length);
