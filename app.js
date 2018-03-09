@@ -8,8 +8,7 @@ let json = new Object();
 
 app.get("/url/:id", function(req, res) {
   id = req.rawHeaders[req.rawHeaders.indexOf("Referer") + 1];
-
-  console.log(process.env.DATABASE_URL);
+  console.log(req.rawHeaders);
 
   if(id.length <= 0) {
     id = req.params.id;
