@@ -7,10 +7,10 @@ let isUrl = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\
 let json = new Object();
 
 app.get("/url/:id", function(req, res) {
-  id = req.params;
+  id = req.params.id;
   //Gets path
   let host = "https://fcc-url-shortnr.herokuapp.com/url/";
-  
+
   console.log(id);
   //Checks of the request is a valid URL
   if(id.length > 0 && isUrl.test(id)) {
