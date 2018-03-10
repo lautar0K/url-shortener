@@ -7,7 +7,7 @@ let isUrl = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\
 let json = new Object();
 
 app.get("/url/:id", function(req, res) {
-  console.log(req, req.originalUrl. req.path);
+  console.log(req);
 
 
  /*
