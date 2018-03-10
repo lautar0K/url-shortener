@@ -8,7 +8,7 @@ let json = new Object();
 
 app.get("/url/:id", function(req, res) {
   id = req.params.id;
-  console.log(req.rawHeaders);
+  console.log(req.path);
   //Gets path
   let host = "https://fcc-url-shortnr.herokuapp.com/url/";
 
