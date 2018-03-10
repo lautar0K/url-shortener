@@ -7,15 +7,13 @@ let isUrl = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\
 let json = new Object();
 
 app.get("/url/:id*", function(req, res) {
-  req.setTimeOut(2000);
+  request.setTimeOut(2000);
   console.log(req);
   id = req.params.id + " 1";
 
   //Gets path
   let host = "https://fcc-url-shortnr.herokuapp.com/url/";
 
-
-  console.log(req);
   //Checks of the request is a valid URL
   if(id.length > 0 && isUrl.test(id)) {
     if (id != "favicon.ico") {
