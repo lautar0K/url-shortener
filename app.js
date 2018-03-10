@@ -8,6 +8,7 @@ let json = new Object();
 
 app.get("/:url/:id", function(req, res) {
   console.log(req);
+  res.end();
 
 
  /*
