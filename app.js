@@ -36,7 +36,8 @@ app.get("/*", function(req, res) {
           pg.end();
         });
 
-        res.status(302).redirect(redir);
+        res.redirect(redir);
+        res.end()
       }
 
     } else {
