@@ -6,8 +6,8 @@ const sh = require("shorthash");
 let isUrl = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
 let json = new Object();
 
-app.get("/url/*", function(req, res) {
-  let id = req.params;
+app.get("/url/:id", function(req, res) {
+  let id = req;
 
   console.log(id);
   res.end();
