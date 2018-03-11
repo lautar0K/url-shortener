@@ -50,6 +50,31 @@ app.get("/*", function(req, res) {
       })
     }
     res.json(json);
+  } else {
+    if(id != "favicon.ico") {
+         let redir;
+
+         //Checks if the request is a short
+         pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+           if(err) {
+             console.log("Error connecting.");
+           }
+
+           //Checks if the requested short is in DB
+           client.query("SELECT name FROM links WHERE short = '" + id + "'", function(err, result) {
+             done();
+             if(err) {
+               console.log("Error in query.", err);
+             }
+             redir = result.rows[0]["name"];
+             console.log(redir);
+             client.end()
+           })
+           pg.end();
+         });
+
+    res.redirect(redir);
+    }
   }
 });
 app.listen(process.env.PORT || 3000, function() {
