@@ -6,29 +6,53 @@ const sh = require("shorthash");
 let isUrl = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
 let json = new Object();
 
-app.get("/url/*", function(req, res) {
-  let id = req.params;
-
+app.get("/*", function(req, res) {
+  id = req.params;
   console.log(id);
-  res.end();
 
-
- /*
   //Gets path
-  let host = "https://fcc-url-shortnr.herokuapp.com/url/";
+  let host = "https://fcc-url-shortnr.herokuapp.com/";
+  id = id.substr(host.length);
 
   //Checks of the request is a valid URL
-  if(id.length > 0 && isUrl.test(id)) {
-    if (id != "favicon.ico") {
+  if(id.length > 0) {
+    console.log(id);
+    if(!isUrl.test(id)) {
       console.log(id);
+      if(id != "favicon.ico") {
+        let redir;
+
+        //Checks if the request is a short
         pg.connect(process.env.DATABASE_URL, function(err, client, done) {
           if(err) {
             console.log("Error connecting.");
           }
           let hash = sh.unique(id);
-          json.original = host + id;
-          json.short = hash;
 
+          //Checks if the requested short is in DB
+          client.query("SELECT name FROM links WHERE short = '" + id + "'", function(err, result) {
+            done();
+            if(err) {
+              console.log("Error in query.", err);
+            }
+            redir = "https://" + result.rows[0]["name"];
+            console.log(redir);
+            client.end()
+          })
+          pg.end();
+        });
+
+        res.status(302).redirect(redir);
+      }
+
+    } /* else {
+      if (id != "favicon.ico") {
+        console.log(id + " Valid.");
+        pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+          if(err) {
+            console.log("Error connecting.");
+          }
+          let hash = sh.unique(id);
           //Checks if the request is already in DB
           client.query("SELECT FROM links WHERE name = '" + id + "'", function(err, result) {
             done();
@@ -44,16 +68,15 @@ app.get("/url/*", function(req, res) {
                 if(err) {
                   console.log("Error running query.", err);
                 }
+                json.short = hash;
               })
-
-           } else {
-             console.log("Already in DB.");
-          }
-        })
-      })
-    }
-    res.json(json);
-  } */
+            res.json(json);
+           }
+         })
+       })
+     }
+   } */
+ }
 });
 app.listen(process.env.PORT || 3000, function() {
   console.log("Listening on port ", this.address().port, app.settings.env)
