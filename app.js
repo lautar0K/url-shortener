@@ -29,7 +29,7 @@ app.get("/*", function(req, res) {
             if(err) {
               console.log("Error in query.", err);
             }
-            redir = "https://" + result.rows[0]["name"];
+            redir = "https://" + result.rows[0];
             console.log(redir);
             client.end()
           })
