@@ -63,9 +63,9 @@ app.get("/*", function(req, res) {
              if(err) {
                console.log("Error in query.", err);
              }
-             redir = result.rows[0]["name"];
-             if(redir != undefined) {
-               let regex = /^http/
+             result = result.rows[0]["name"];
+             if(result != undefined) {
+               let regex = /^http/;
                if(!regex.test(redir)) {
                  redir = "https://" + redir;
                }
