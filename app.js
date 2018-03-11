@@ -68,7 +68,9 @@ app.get("/*", function(req, res) {
              }
              redir = result.rows[0]["name"];
              if(redir != undefined) {
-               console.log(redir);
+               if(!"^https?://".match(redir)) {
+                 redir = "https://" + redir;
+               }
                res.redirect(redir);
              } else {
                res.end("Wrong short.");
