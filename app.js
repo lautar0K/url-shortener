@@ -67,8 +67,12 @@ app.get("/*", function(req, res) {
                console.log("Error in query.", err);
              }
              redir = result.rows[0]["name"];
-             console.log(redir);
-             res.redirect(redir);
+             if(redir != undefined) {
+               console.log(redir);
+               res.redirect(redir);
+             } else {
+               res.end("Wrong short.");
+             }
              client.end()
            })
            pg.end();
