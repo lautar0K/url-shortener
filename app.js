@@ -10,6 +10,9 @@ app.get("/*", function(req, res) {
   id = req.params["0"];
 
   console.log(id);
+  
+  let host = "https://fcc-url-shortnr.herokuapp.com/";
+  id = id.substr(host.length);
   //Checks of the request is a valid URL
   if(id.length > 0 && isUrl.test(id)) {
     if (id != "favicon.ico") {
