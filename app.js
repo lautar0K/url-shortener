@@ -9,10 +9,6 @@ let json = new Object();
 app.get("/*", function(req, res) {
   id = req.params["0"];
 
-  //Gets path
-  let host = "https://fcc-url-shortnr.herokuapp.com/";
-
-
   console.log(id);
   //Checks of the request is a valid URL
   if(id.length > 0 && isUrl.test(id)) {
@@ -50,6 +46,7 @@ app.get("/*", function(req, res) {
       })
     }
     res.json(json);
+
   } else {
     if(id != "favicon.ico") {
          let redir;
@@ -69,7 +66,7 @@ app.get("/*", function(req, res) {
              redir = result.rows[0]["name"];
              if(redir != undefined) {
                let regex = /^https?://
-               if(!"^https?://".test(redir)) {
+               if(!/^http/.test(redir)) {
                  redir = "https://" + redir;
                }
                res.redirect(redir);
