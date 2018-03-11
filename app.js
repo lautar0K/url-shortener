@@ -7,18 +7,12 @@ let isUrl = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\
 let json = new Object();
 
 app.get("/*", function(req, res) {
-  id = req.params;
+  id = req.params["0"];
   console.log(id);
 
-  //Gets path
-  let host = "https://fcc-url-shortnr.herokuapp.com/";
-  id = id.substr(host.length);
-
   //Checks of the request is a valid URL
-  if(id.length > 0) {
-    console.log(id);
-    if(!isUrl.test(id)) {
-      console.log(id);
+  if(!isUrl.test(id)) {
+    console.log(id + "Not valid");
       if(id != "favicon.ico") {
         let redir;
 
@@ -45,7 +39,7 @@ app.get("/*", function(req, res) {
         res.status(302).redirect(redir);
       }
 
-    } /* else {
+    }) /* else {
       if (id != "favicon.ico") {
         console.log(id + " Valid.");
         pg.connect(process.env.DATABASE_URL, function(err, client, done) {
@@ -76,7 +70,6 @@ app.get("/*", function(req, res) {
        })
      }
    } */
- }
 });
 app.listen(process.env.PORT || 3000, function() {
   console.log("Listening on port ", this.address().port, app.settings.env)
