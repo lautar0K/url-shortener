@@ -10,7 +10,7 @@ app.get("/*", function(req, res) {
   id = req.params["0"];
 
   //Gets path
-  let host = "https://fcc-url-shortnr.herokuapp.com/url/";
+  let host = "https://fcc-url-shortnr.herokuapp.com/";
 
 
   console.log(id);
