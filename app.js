@@ -65,8 +65,8 @@ app.get("/*", function(req, res) {
              }
              redir = result.rows[0]["name"];
              if(redir != undefined) {
-               let regex = /^https?://
-               if(!/^http/.test(redir)) {
+               let regex = /^http/
+               if(!regex.test(redir)) {
                  redir = "https://" + redir;
                }
                res.redirect(redir);
