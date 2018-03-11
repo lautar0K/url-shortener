@@ -39,7 +39,7 @@ app.get("/*", function(req, res) {
         res.status(302).redirect(redir);
       }
 
-    }) /* else {
+    } else {
       if (id != "favicon.ico") {
         console.log(id + " Valid.");
         pg.connect(process.env.DATABASE_URL, function(err, client, done) {
@@ -69,7 +69,7 @@ app.get("/*", function(req, res) {
          })
        })
      }
-   } */
+   }
 });
 app.listen(process.env.PORT || 3000, function() {
   console.log("Listening on port ", this.address().port, app.settings.env)
