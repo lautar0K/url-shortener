@@ -66,14 +66,13 @@ app.get("/*", function(req, res) {
              if(err) {
                console.log("Error in query.", err);
              }
-             redir = result.rows[0];
+             redir = result.rows[0]["name"];
              console.log(redir);
+             res.redirect(redir);
              client.end()
            })
            pg.end();
          });
-
-    res.redirect(redir);
     }
   }
 });
